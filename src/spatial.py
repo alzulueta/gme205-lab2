@@ -1,3 +1,6 @@
+import csv
+from spatial import Point
+
 import math
 
 class Point:
@@ -43,3 +46,26 @@ class Point:
         )
         c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
         return R * c
+    
+    # ------------------------------------------------------------------
+    # Class method (constructing objects from data)
+    # ------------------------------------------------------------------ 
+    @classmethod
+    def from_row(cls, row):
+        return cls(
+            id=str(row["id"]),
+            lon=float(row["lon"]),
+            lat=float(row["lat"]),
+            name=row.get("name"),
+            tag=row.get("tag"),
+        )
+    
+    def is_poi(self):
+        return (self.tag or "").lower() == "poi"
+
+# ------------------------------------------------------------------
+# PointSet: a collection of Point objects (with AI support)
+# ------------------------------------------------------------------
+class PointSet:
+    def __init__(self, points=None):
+        self.points = points if points is not None else []

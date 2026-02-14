@@ -10,25 +10,28 @@ try:
 except ValueError as e:
     print("Caught an invalid point:", e)
 
+# ------------------------------------------------------------------
+# Test to_tuple() instance method
+# ------------------------------------------------------------------
+
 p = Point("A", 121.0, 14.6) 
 print(p.id, p.lon, p.lat) 
 print(p.to_tuple())
 
 # ------------------------------------------------------------------
-# Test distance_to() method (with AI support)
+# Test distance_to() instance method (with AI support)
 # ------------------------------------------------------------------
-r = Point("B", 121.1, 14.7)
-print(f"Distance between {p.id} and {r.id}: {p.distance_to(r):.2f} km")
+p1 = Point("A", 121.0, 14.6)
+p2 = Point("B", 122.0, 15.0)
 
-# ------------------------------------------------------------------
-# Test static Haversine method (with AI support)
-# ------------------------------------------------------------------
-distance_m = Point.haversine_m(121.0, 14.6, 121.1, 14.7)
-print(f"Haversine distance: {distance_m:.2f} meters")
-# To answer the question in B.7.4: 
-# The haversine_m() function finds how far apart two points are on Earth.
-# It uses their longitude and latitude and a formula that accounts for the Earth's round shape.
-# It gives the distance in meters.
+distance = p1.distance_to(p2)
+print("Distance between p1 and p2:", distance, "meters")
+
+# 4. How did this function return the Haversine value?
+# The distance_to() method calculates the shortest distance between two points on Earth
+# using their latitude and longitude. It uses the Haversine formula, which accounts
+# for the Earth's round shape, and returns the distance in meters.
+
 
 
 
