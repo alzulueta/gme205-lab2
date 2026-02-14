@@ -64,8 +64,32 @@ class Point:
         return (self.tag or "").lower() == "poi"
 
 # ------------------------------------------------------------------
-# PointSet: a collection of Point objects (with AI support)
+# Part C: (with AI support)
 # ------------------------------------------------------------------
 class PointSet:
     def __init__(self, points=None):
         self.points = points if points is not None else []
+
+    # Class method to load Points from a CSV file
+    @classmethod
+    def from_csv(cls, path):
+        points = []
+        with open(path, newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                try:
+                    points.append(Point.from_row(row))
+                except ValueError:
+                    continue
+        return cls(points)
+    
+    def count(self):
+        return len(self.points)
+
+    def bbox(self):
+        lons = [p.lon for p in self.points]
+        lats = [p.lat for p in self.points]
+        return min(lons), min(lats), max(lons), max(lats)
+
+    def filter_by_tag(self, tag):
+        return PointSet([p for p in self.points if p.tag == tag])
