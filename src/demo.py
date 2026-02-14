@@ -1,4 +1,4 @@
-from spatial import Point
+from spatial import Point, PointSet
 
 p = Point("A", 121.0, 14.6)
 print(p.id, p.lon, p.lat)
@@ -31,9 +31,4 @@ print("Distance between p1 and p2:", distance, "meters")
 # The distance_to() method calculates the shortest distance between two points on Earth
 # using their latitude and longitude. It uses the Haversine formula, which accounts
 # for the Earth's round shape, and returns the distance in meters.
-
-
-
-
-
 

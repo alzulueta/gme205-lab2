@@ -1,7 +1,4 @@
-import csv
-from spatial import Point
-
-import math
+import math, csv
 
 class Point:
     def __init__(self, id, lon, lat, name=None, tag=None):
