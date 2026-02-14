@@ -1,4 +1,4 @@
-from spatial import PointSet, PointSet
+from spatial import PointSet
 
 # ------------------------------------------------------------------
 # Part C: Usage Check (with AI support)
